@@ -36,9 +36,13 @@ servidor.use(express.urlencoded({ extended: true }));
 servidor.use(express.json());
 
 servidor.use(session({
-  secret: "abc123",
-  resave: true,
-  saveUninitialized: false
+  secret: "abc123",       
+  resave: true,           
+  saveUninitialized: false,  
+  cookie: {
+    sameSite: "none",     
+    secure: true          
+  }
 }));
 
 // Servir archivos estáticos
