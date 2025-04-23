@@ -28,7 +28,7 @@ const listaUsuarios = [
 
 // Middlewares
 servidor.use(cors({
-  origin: "http://localhost:5173", 
+  origin: "https://mi-frontend.onrender.com", 
   credentials: true
 }));
 
