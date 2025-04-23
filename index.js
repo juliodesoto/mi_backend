@@ -159,7 +159,28 @@ servidor.post("/decisiones/nueva", async (req, res) => {
 });
 
 // Eliminar una decisión
+
+/*
 servidor.delete("/decisiones/borrar/:id", async (req, res, next) => {
+  try {
+    const count = await borrarDecision(req.params.id);
+    if (count) {
+      return res.status(204).send("");
+    }
+    next();
+  } catch (error) {
+    console.error("Error al borrar:", error);
+    res.status(500).json({ error: "Error en el servidor" });
+  }
+});
+
+*/
+
+servidor.delete("/decisiones/borrar/:id", async (req, res, next) => {
+  if (!req.session.tipo) {
+    return res.status(401).json({ error: "No autenticado" });
+  }
+
   try {
     const count = await borrarDecision(req.params.id);
     if (count) {
