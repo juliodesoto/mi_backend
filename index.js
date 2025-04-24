@@ -41,7 +41,8 @@ servidor.use(session({
   resave: true,
   saveUninitialized: false
 }));
-*/
+
+///////////////////////////////////
 
 servidor.use(session({
   secret: "abc123",
@@ -50,6 +51,24 @@ servidor.use(session({
   cookie: {
     sameSite: "none",
     secure: true
+  }
+}));
+
+*/
+
+import MongoStore from "connect-mongo";
+
+servidor.use(session({
+  secret: "abc123",
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI
+  }),
+  cookie: {
+    sameSite: "none",
+    secure: true,
+    maxAge: 1000 * 60 * 60 * 24
   }
 }));
 
